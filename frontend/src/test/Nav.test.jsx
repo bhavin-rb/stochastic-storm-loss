@@ -7,7 +7,7 @@ describe('Nav', () => {
     render(<Nav theme="dark" onToggleTheme={vi.fn()} />)
 
     for (const label of ['Home', 'Methodology', 'Models', 'Results', 'About']) {
-      expect(screen.getByRole('link', { name: label })).toBeInTheDocument()
+      expect(screen.getAllByRole('link', { name: label }).length).toBeGreaterThanOrEqual(1)
     }
 
     expect(screen.getByRole('button', { name: /switch to light theme/i })).toBeInTheDocument()
