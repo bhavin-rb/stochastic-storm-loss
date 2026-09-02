@@ -51,7 +51,7 @@ export function DescriptiveCharts({ theme, threshold }) {
     () => ({
       xaxis: { title: { text: 'Threshold (USD)', standoff: 12 } },
       yaxis: { title: { text: 'Mean excess (USD)', standoff: 12 } },
-      margin: { t: 20, r: 16, b: 64, l: 72 },
+      margin: { t: 40, r: 16, b: 64, l: 72 },
       shapes: threshold
         ? [
             {
@@ -91,7 +91,7 @@ export function DescriptiveCharts({ theme, threshold }) {
             layout={{
               xaxis: { title: { text: 'Years', standoff: 12 } },
               yaxis: { title: { text: 'No. of Storms', standoff: 12 } },
-              margin: { t: 20, r: 16, b: 64, l: 72 },
+              margin: { t: 40, r: 16, b: 64, l: 72 },
             }}
           />
         </div>
@@ -109,7 +109,7 @@ export function DescriptiveCharts({ theme, threshold }) {
             layout={{
               xaxis: { title: { text: 'Insured loss (USD)', standoff: 12 } },
               yaxis: { title: { text: 'Count', standoff: 12 } },
-              margin: { t: 20, r: 16, b: 64, l: 72 },
+              margin: { t: 40, r: 16, b: 64, l: 72 },
             }}
           />
         </div>
