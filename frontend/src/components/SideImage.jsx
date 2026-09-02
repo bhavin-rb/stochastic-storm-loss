@@ -28,7 +28,7 @@ export function SideImage({ src, alt = '', side = 'right', className = '', child
         src={src}
         alt={alt}
         style={{ y, scale, opacity }}
-        className="aspect-[7/5] w-full rounded-2xl object-cover shadow-lg"
+        className="aspect-[3/2] w-full rounded-2xl object-cover shadow-lg sm:aspect-[7/5]"
       />
     </motion.div>
   )

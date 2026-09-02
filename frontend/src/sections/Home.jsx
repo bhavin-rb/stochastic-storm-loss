@@ -8,7 +8,11 @@ export function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
-    <section id="home" ref={ref} className="relative flex h-[92svh] items-center overflow-hidden">
+    <section
+      id="home"
+      ref={ref}
+      className="relative flex min-h-[92svh] items-center overflow-hidden py-20"
+    >
       <motion.img
         src="/images/hero_image.jpg"
         alt=""
@@ -33,7 +37,7 @@ export function Home() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl font-bold tracking-tight sm:text-6xl"
+          className="text-3xl font-bold tracking-tight sm:text-6xl"
         >
           Stochastic Modelling of Catastrophic Storm Losses
         </motion.h1>
@@ -41,7 +45,7 @@ export function Home() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-5 max-w-2xl text-lg text-slate-200"
+          className="mx-auto mt-4 max-w-2xl text-base text-slate-200 sm:mt-5 sm:text-lg"
         >
           An interactive exploration of 2,510 global storm events (2000–2023): fitting
           frequency and severity models, and pricing the resulting pure premium.

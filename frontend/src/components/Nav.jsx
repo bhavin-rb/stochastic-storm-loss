@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -42,9 +42,27 @@ function Hamburger({ open, onClick }) {
 
 export function Nav({ theme, onToggleTheme }) {
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('#home')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`)
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+    )
+    for (const link of LINKS) {
+      const el = document.querySelector(link.href)
+      if (el) observer.observe(el)
+    }
+    return () => observer.disconnect()
+  }, [])
 
   const handleNavClick = (e, href) => {
     e.preventDefault()
+    setActive(href)
     setOpen(false)
     setTimeout(() => {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -64,7 +82,10 @@ export function Nav({ theme, onToggleTheme }) {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="whitespace-nowrap decoration-2 underline-offset-4 transition-colors hover:text-slate-950 hover:underline dark:hover:text-white"
+                aria-current={active === link.href ? 'true' : undefined}
+                className={`whitespace-nowrap decoration-2 underline-offset-4 transition-colors hover:text-slate-950 hover:underline dark:hover:text-white ${
+                  active === link.href ? 'text-slate-950 underline dark:text-white' : ''
+                }`}
               >
                 {link.label}
               </a>
