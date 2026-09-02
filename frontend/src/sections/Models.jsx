@@ -66,7 +66,7 @@ export function Models({ theme }) {
   }, [severity.data])
 
   return (
-    <section id="models" className="mx-auto max-w-6xl px-6 py-10 sm:py-16">
+    <section id="models" className="mx-auto max-w-6xl scroll-mt-16 px-6 py-10 sm:py-16">
       <SideImage
         src="/images/data_analysis_section_image.jpg"
         alt="Data analysis of storm severity"
@@ -151,7 +151,14 @@ export function Models({ theme }) {
                     barmode: 'group',
                     xaxis: { title: { text: 'Number of storms', standoff: 12 } },
                     yaxis: { title: { text: 'Frequency', standoff: 12 } },
-                    margin: { t: 20, r: 16, b: 64, l: 72 },
+                    legend: {
+                      orientation: 'h',
+                      y: 1.18,
+                      x: 0,
+                      xanchor: 'left',
+                      yanchor: 'bottom',
+                    },
+                    margin: { t: 64, r: 16, b: 64, l: 72 },
                   }}
                 />
               )}
@@ -195,7 +202,14 @@ export function Models({ theme }) {
                   layout={{
                     xaxis: { title: { text: 'Excess Loss', standoff: 12 } },
                     yaxis: { title: { text: 'Density', standoff: 12 } },
-                    margin: { t: 20, r: 16, b: 64, l: 72 },
+                    legend: {
+                      orientation: 'h',
+                      y: 1.18,
+                      x: 0,
+                      xanchor: 'left',
+                      yanchor: 'bottom',
+                    },
+                    margin: { t: 64, r: 16, b: 64, l: 72 },
                   }}
                 />
               )}

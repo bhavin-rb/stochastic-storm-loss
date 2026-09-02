@@ -21,7 +21,7 @@ const CARDS = [
 
 export function Methodology() {
   return (
-    <section id="methodology" className="mx-auto max-w-5xl px-6 py-10 sm:py-16">
+    <section id="methodology" className="mx-auto max-w-5xl scroll-mt-16 px-6 py-10 sm:py-16">
       <SideImage
         src="/images/methodology_section_image.jpg"
         alt="Storm damage with insured loss methodology"
