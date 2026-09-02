@@ -40,7 +40,7 @@ export function Results({ theme }) {
     })()
 
   return (
-    <section id="results" className="mx-auto max-w-6xl px-6 py-16">
+    <section id="results" className="mx-auto max-w-6xl px-6 py-10 sm:py-16">
       <SideImage
         src="/images/conclusion_section_image.jpg"
         alt="Conclusion summarizing model outcomes"
@@ -100,7 +100,7 @@ export function Results({ theme }) {
       </SideImage>
 
       <FadeInSection delay={0.1}>
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2">
           <HoverCard>
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Pure Premium</h3>

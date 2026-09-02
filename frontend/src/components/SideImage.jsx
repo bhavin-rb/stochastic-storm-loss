@@ -46,7 +46,7 @@ export function SideImage({ src, alt = '', side = 'right', className = '', child
   )
 
   return (
-    <div ref={ref} className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${className}`}>
+    <div ref={ref} className={`grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12 ${className}`}>
       {side === 'left' ? (
         <>
           {image}

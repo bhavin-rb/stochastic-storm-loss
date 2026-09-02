@@ -66,7 +66,7 @@ export function Models({ theme }) {
   }, [severity.data])
 
   return (
-    <section id="models" className="mx-auto max-w-6xl px-6 py-16">
+    <section id="models" className="mx-auto max-w-6xl px-6 py-10 sm:py-16">
       <SideImage
         src="/images/data_analysis_section_image.jpg"
         alt="Data analysis of storm severity"
@@ -116,7 +116,7 @@ export function Models({ theme }) {
       </SideImage>
 
       <FadeInSection delay={0.1}>
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2">
           <HoverCard>
             <div className="flex items-center justify-between gap-4">
               <h3 className="font-semibold">Frequency fit</h3>
@@ -217,7 +217,7 @@ export function Models({ theme }) {
       </FadeInSection>
 
       <FadeInSection delay={0.2}>
-        <h3 className="mt-16 text-xl font-semibold">Dataset overview</h3>
+        <h3 className="mt-10 text-xl font-semibold sm:mt-16">Dataset overview</h3>
         <p className="mt-2 max-w-3xl text-sm text-slate-600 dark:text-slate-300">
           Descriptive charts computed directly from the underlying dataset, independent of the model
           selection above.

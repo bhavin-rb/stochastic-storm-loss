@@ -21,7 +21,7 @@ const CARDS = [
 
 export function Methodology() {
   return (
-    <section id="methodology" className="mx-auto max-w-5xl px-6 py-16">
+    <section id="methodology" className="mx-auto max-w-5xl px-6 py-10 sm:py-16">
       <SideImage
         src="/images/methodology_section_image.jpg"
         alt="Storm damage with insured loss methodology"
@@ -73,7 +73,7 @@ export function Methodology() {
         </ul>
       </SideImage>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2">
+      <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-2">
         {CARDS.map((card, i) => (
           <FadeInSection key={card.title} delay={i * 0.1}>
             <HoverCard className="h-full">
@@ -87,7 +87,7 @@ export function Methodology() {
       </div>
 
       <FadeInSection delay={0.2}>
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <h3 className="font-semibold">Frequency: Poisson vs. Negative Binomial</h3>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
             The Poisson distribution assumes the mean equals the variance:
