@@ -153,7 +153,7 @@ export function Models({ theme }) {
                     yaxis: { title: { text: 'Frequency', standoff: 12 } },
                     legend: {
                       orientation: 'h',
-                      y: 1.18,
+                      y: 1.0,
                       x: 0,
                       xanchor: 'left',
                       yanchor: 'bottom',
@@ -204,7 +204,7 @@ export function Models({ theme }) {
                     yaxis: { title: { text: 'Density', standoff: 12 } },
                     legend: {
                       orientation: 'h',
-                      y: 1.18,
+                      y: 1.0,
                       x: 0,
                       xanchor: 'left',
                       yanchor: 'bottom',

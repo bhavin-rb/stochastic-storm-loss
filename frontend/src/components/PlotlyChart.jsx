@@ -38,7 +38,11 @@ export function PlotlyChart({ data, layout = {}, theme = 'dark', className = '',
       }}
       style={{ width: '100%', height: '100%' }}
       useResizeHandler
-      config={{ displayModeBar: false, responsive: true }}
+      config={{
+        displayModeBar: true,
+        responsive: true,
+        modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d'],
+      }}
       className={className}
       {...rest}
     />
