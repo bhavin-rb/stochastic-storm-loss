@@ -16,16 +16,28 @@ export function Results({ theme }) {
   const severity = useSeverityFit(DEFAULT_THRESHOLD)
 
   const qqData =
-    severity.data &&
-    [
-      {
-        x: severity.data.qq_theoretical,
-        y: severity.data.qq_empirical,
-        mode: 'markers',
-        type: 'scatter',
-        name: 'Exceedances',
-      },
-    ]
+    severity.data && (() => {
+      const minX = Math.min(...severity.data.qq_theoretical)
+      const maxX = Math.max(...severity.data.qq_theoretical)
+      return [
+        {
+          x: [minX, maxX],
+          y: [minX, maxX],
+          mode: 'lines',
+          type: 'scatter',
+          name: 'Reference (y=x)',
+          line: { color: '#ef4444', width: 2, dash: 'dash' },
+          showlegend: false,
+        },
+        {
+          x: severity.data.qq_theoretical,
+          y: severity.data.qq_empirical,
+          mode: 'markers',
+          type: 'scatter',
+          name: 'Exceedances',
+        },
+      ]
+    })()
 
   return (
     <section id="results" className="mx-auto max-w-6xl px-6 py-16">
