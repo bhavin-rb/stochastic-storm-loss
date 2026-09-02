@@ -118,7 +118,7 @@ export function Models({ theme }) {
       <FadeInSection delay={0.1}>
         <div className="mt-8 grid gap-6 sm:mt-10 lg:grid-cols-2">
           <HoverCard>
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <h3 className="font-semibold">Frequency fit</h3>
               <div className="flex rounded-full border border-slate-300 p-1 text-sm dark:border-slate-700">
                 {['negbin', 'poisson'].map((option) => (
