@@ -66,7 +66,7 @@ export function Models({ theme }) {
   }, [severity.data])
 
   return (
-    <section id="models" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="models" className="mx-auto max-w-6xl px-6 py-16">
       <SideImage
         src="/images/data_analysis_section_image.jpg"
         alt="Data analysis of storm severity"
@@ -147,7 +147,12 @@ export function Models({ theme }) {
                 <LazyPlotlyChart
                   theme={theme}
                   data={frequencyChartData}
-                  layout={{ barmode: 'group', xaxis: { title: 'Events per year' }, yaxis: { title: 'Years' } }}
+                  layout={{
+                    barmode: 'group',
+                    xaxis: { title: { text: 'Number of storms', standoff: 12 } },
+                    yaxis: { title: { text: 'Frequency', standoff: 12 } },
+                    margin: { t: 20, r: 16, b: 64, l: 72 },
+                  }}
                 />
               )}
             </div>
@@ -187,7 +192,11 @@ export function Models({ theme }) {
                 <LazyPlotlyChart
                   theme={theme}
                   data={severityChartData}
-                  layout={{ xaxis: { title: 'Exceedance (USD)' }, yaxis: { title: 'Density' } }}
+                  layout={{
+                    xaxis: { title: { text: 'Excess Loss', standoff: 12 } },
+                    yaxis: { title: { text: 'Density', standoff: 12 } },
+                    margin: { t: 20, r: 16, b: 64, l: 72 },
+                  }}
                 />
               )}
             </div>

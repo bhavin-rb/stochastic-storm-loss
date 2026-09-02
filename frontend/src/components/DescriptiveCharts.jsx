@@ -49,8 +49,9 @@ export function DescriptiveCharts({ theme, threshold }) {
 
   const mrlLayout = useMemo(
     () => ({
-      xaxis: { title: 'Threshold (USD)' },
-      yaxis: { title: 'Mean excess (USD)' },
+      xaxis: { title: { text: 'Threshold (USD)', standoff: 12 } },
+      yaxis: { title: { text: 'Mean excess (USD)', standoff: 12 } },
+      margin: { t: 20, r: 16, b: 64, l: 72 },
       shapes: threshold
         ? [
             {
@@ -87,7 +88,11 @@ export function DescriptiveCharts({ theme, threshold }) {
           <LazyPlotlyChart
             theme={theme}
             data={frequencySeries}
-            layout={{ xaxis: { title: 'Year' }, yaxis: { title: 'Events' } }}
+            layout={{
+              xaxis: { title: { text: 'Years', standoff: 12 } },
+              yaxis: { title: { text: 'No. of Storms', standoff: 12 } },
+              margin: { t: 20, r: 16, b: 64, l: 72 },
+            }}
           />
         </div>
       </HoverCard>
@@ -101,7 +106,11 @@ export function DescriptiveCharts({ theme, threshold }) {
           <LazyPlotlyChart
             theme={theme}
             data={severityHistogram}
-            layout={{ xaxis: { title: 'Insured loss (USD)' }, yaxis: { title: 'Count' } }}
+            layout={{
+              xaxis: { title: { text: 'Insured loss (USD)', standoff: 12 } },
+              yaxis: { title: { text: 'Count', standoff: 12 } },
+              margin: { t: 20, r: 16, b: 64, l: 72 },
+            }}
           />
         </div>
       </HoverCard>

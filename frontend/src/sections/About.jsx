@@ -3,7 +3,7 @@ import { AUTHOR_NAME, LINKEDIN_URL, THESIS_TITLE, UNIVERSITY_NAME } from '../sit
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-4xl px-6 py-24">
+    <section id="about" className="mx-auto max-w-4xl px-6 py-16">
       <FadeInSection>
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <img src="/images/about_section_image.jpg" alt="" className="h-56 w-full object-cover sm:h-72" />

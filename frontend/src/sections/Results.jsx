@@ -28,7 +28,7 @@ export function Results({ theme }) {
     ]
 
   return (
-    <section id="results" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="results" className="mx-auto max-w-6xl px-6 py-16">
       <SideImage
         src="/images/conclusion_section_image.jpg"
         alt="Conclusion summarizing model outcomes"
@@ -213,7 +213,11 @@ export function Results({ theme }) {
                 <LazyPlotlyChart
                   theme={theme}
                   data={qqData}
-                  layout={{ xaxis: { title: 'Theoretical quantiles' }, yaxis: { title: 'Empirical quantiles' } }}
+                  layout={{
+                    xaxis: { title: { text: 'Theoretical quantiles', standoff: 12 } },
+                    yaxis: { title: { text: 'Empirical quantiles', standoff: 12 } },
+                    margin: { t: 20, r: 16, b: 64, l: 72 },
+                  }}
                 />
               )}
             </div>
