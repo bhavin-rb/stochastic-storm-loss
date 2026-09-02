@@ -1,4 +1,5 @@
 import { Nav } from './components/Nav'
+import { ScrollTopButton } from './components/ScrollTopButton'
 import { useTheme } from './hooks/useTheme'
 import { Home } from './sections/Home'
 import { Methodology } from './sections/Methodology'
@@ -19,6 +20,7 @@ function App() {
         <Results theme={theme} />
         <About />
       </main>
+      <ScrollTopButton />
       <footer className="border-t border-slate-200 px-6 py-8 text-center text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400">
         <p className="mx-auto max-w-3xl leading-relaxed">
           Built as an interactive companion to a Bachelor thesis on catastrophic storm loss

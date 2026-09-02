@@ -19,7 +19,7 @@ export function Home() {
         style={{ y }}
         className="absolute inset-0 h-[130%] w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-white dark:to-slate-950" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/40 via-55% to-white to-95% dark:to-slate-950" />
 
       <motion.div
         style={{ opacity }}
