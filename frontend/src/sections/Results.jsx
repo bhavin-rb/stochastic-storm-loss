@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FadeInSection } from '../components/FadeInSection'
 import { HoverCard } from '../components/HoverCard'
 import { LazyPlotlyChart } from '../components/LazyPlotlyChart'
+import { SideImage } from '../components/SideImage'
 import { usePurePremium, useSeverityFit } from '../api/hooks'
 import { formatCurrency, formatNumber } from '../lib/format'
 
@@ -10,6 +11,7 @@ const DEFAULT_THRESHOLD = 5_000_000
 
 export function Results({ theme }) {
   const [model, setModel] = useState('negbin')
+  const [showExplanation, setShowExplanation] = useState(false)
   const pricing = usePurePremium(DEFAULT_THRESHOLD, model)
   const severity = useSeverityFit(DEFAULT_THRESHOLD)
 
@@ -27,13 +29,63 @@ export function Results({ theme }) {
 
   return (
     <section id="results" className="mx-auto max-w-6xl px-6 py-24">
-      <FadeInSection>
+      <SideImage
+        src="/images/conclusion_section_image.jpg"
+        alt="Conclusion summarizing model outcomes"
+        side="right"
+      >
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Results</h2>
         <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
-          Combining the fitted frequency and severity models at the dataset&apos;s default
-          $5,000,000 threshold.
+          By combining the fitted frequency and severity models at the dataset&apos;s default{' '}
+          <strong className="font-semibold text-slate-900 dark:text-white">$5,000,000 threshold</strong>,
+          the following outcomes are observed:
         </p>
-      </FadeInSection>
+        <ul className="mt-6 space-y-4">
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Frequency outcomes:</strong>{' '}
+              the <strong className="font-medium">Poisson model</strong> provides a baseline estimate
+              of annual storm counts, while the <strong className="font-medium">Negative Binomial
+              model</strong> captures over-dispersion present in the historical data.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Severity outcomes:</strong>{' '}
+              loss magnitudes above the threshold are well-represented by the{' '}
+              <strong className="font-medium">Generalized Pareto Distribution (GPD)</strong>,
+              reflecting the heavy-tailed nature of catastrophic events.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Integrated premium:</strong>{' '}
+              the joint frequency–severity framework yields an expected annual{' '}
+              <strong className="font-medium">pure premium</strong>, quantifying the average insured
+              loss cost under stochastic assumptions.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Model comparison:</strong>{' '}
+              results highlight differences in premium estimates depending on the chosen frequency
+              distribution, underscoring the importance of model selection in actuarial practice.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Data grounding:</strong>{' '}
+              all results are derived directly from the <strong className="font-medium">EM-DAT</strong>{' '}
+              dataset, ensuring reproducibility and alignment with the thesis methodology.
+            </p>
+          </li>
+        </ul>
+      </SideImage>
 
       <FadeInSection delay={0.1}>
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
@@ -70,6 +122,65 @@ export function Results({ theme }) {
               <div className="mt-6 rounded-xl border border-amber-300 bg-amber-50 p-4 dark:border-amber-700 dark:bg-amber-950/40">
                 <p className="text-2xl font-bold text-amber-700 dark:text-amber-300">Infinite / Undefined</p>
                 <p className="mt-2 text-sm text-amber-800 dark:text-amber-200">{pricing.data.reason}</p>
+
+                <motion.button
+                  type="button"
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => setShowExplanation((prev) => !prev)}
+                  aria-expanded={showExplanation}
+                  className="mt-4 inline-flex items-center gap-2 rounded-full border border-amber-300 px-4 py-1.5 text-sm font-semibold text-amber-800 transition-colors hover:bg-amber-100 dark:border-amber-700 dark:text-amber-200 dark:hover:bg-amber-950"
+                >
+                  {showExplanation ? 'Hide Explanation' : 'Reveal Explanation'}
+                </motion.button>
+
+                {showExplanation && (
+                  <div className="mt-4 space-y-3 border-t border-amber-300 pt-4 text-amber-900 dark:border-amber-700 dark:text-amber-100">
+                    <p className="text-sm leading-relaxed">
+                      At the dataset&apos;s default{' '}
+                      <strong className="font-semibold">$5,000,000 threshold</strong>, the fitted{' '}
+                      <strong className="font-semibold">Generalized Pareto Distribution (GPD)</strong>{' '}
+                      produces a shape parameter ({'\u03be'}) greater than or equal to 1.
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                        <p className="text-sm leading-relaxed">
+                          <strong className="font-semibold">Interpretation:</strong> When {'\u03be'} ≥ 1, the
+                          expected severity becomes mathematically infinite. This reflects the heavy-tailed
+                          nature of catastrophic storm losses, where extreme events dominate the distribution.
+                        </p>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                        <p className="text-sm leading-relaxed">
+                          <strong className="font-semibold">Implication:</strong> Because the mean loss is
+                          undefined, the <strong className="font-medium">pure premium cannot be computed in
+                          finite terms</strong>. This was a major conclusion of the thesis: traditional
+                          actuarial models break down under heavy-tailed catastrophe risk.
+                        </p>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                        <p className="text-sm leading-relaxed">
+                          <strong className="font-semibold">Frequency context:</strong> The expected
+                          frequency remains finite (≈104.6 events), but combining it with infinite severity
+                          yields an undefined premium.
+                        </p>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                        <p className="text-sm leading-relaxed">
+                          <strong className="font-semibold">Significance:</strong> This result highlights the
+                          need for alternative approaches such as{' '}
+                          <strong className="font-medium">tail risk measures (e.g., Value-at-Risk,
+                          Conditional Tail Expectation)</strong> or{' '}
+                          <strong className="font-medium">reinsurance structures</strong>, rather than
+                          relying solely on expected values.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
             {pricing.data && !pricing.data.is_infinite && (
@@ -108,14 +219,6 @@ export function Results({ theme }) {
             </div>
           </HoverCard>
         </div>
-      </FadeInSection>
-
-      <FadeInSection delay={0.2}>
-        <img
-          src="/images/conclusion_section_image.jpg"
-          alt=""
-          className="mt-10 h-56 w-full rounded-2xl object-cover sm:h-72"
-        />
       </FadeInSection>
     </section>
   )

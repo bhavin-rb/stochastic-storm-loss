@@ -4,6 +4,7 @@ import { DescriptiveCharts } from '../components/DescriptiveCharts'
 import { FadeInSection } from '../components/FadeInSection'
 import { HoverCard } from '../components/HoverCard'
 import { LazyPlotlyChart } from '../components/LazyPlotlyChart'
+import { SideImage } from '../components/SideImage'
 import { useFrequencyFit, useSeverityFit } from '../api/hooks'
 import { formatNumber } from '../lib/format'
 
@@ -66,18 +67,53 @@ export function Models({ theme }) {
 
   return (
     <section id="models" className="mx-auto max-w-6xl px-6 py-24">
-      <FadeInSection>
+      <SideImage
+        src="/images/data_analysis_section_image.jpg"
+        alt="Data analysis of storm severity"
+        side="left"
+      >
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Interactive Models</h2>
         <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
-          Choose a frequency model and move the severity threshold to see the fitted
-          distributions update live, straight from the model-service API.
+          Interactive modelling allows users to explore the dynamics of storm risk in real time.
         </p>
-        <img
-          src="/images/data_analysis_section_image.jpg"
-          alt=""
-          className="mt-8 h-56 w-full rounded-2xl object-cover sm:h-72"
-        />
-      </FadeInSection>
+        <ul className="mt-6 space-y-4">
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Frequency selection:</strong>{' '}
+              a preferred count distribution (e.g.,{' '}
+              <strong className="font-medium">Poisson</strong> or{' '}
+              <strong className="font-medium">Negative Binomial</strong>) can be chosen to represent
+              storm occurrence.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Severity threshold adjustment:</strong>{' '}
+              the loss threshold can be moved interactively, with fitted{' '}
+              <strong className="font-medium">Extreme Value Theory (EVT)</strong> distributions
+              updating live to reflect tail behavior.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Dynamic visualization:</strong>{' '}
+              charts and curves refresh instantly through the model-service API, showing how frequency
+              and severity interact under different parameter settings.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Applied insight:</strong>{' '}
+              this interactivity demonstrates how actuarial assumptions influence the resulting pure
+              premium, making the modelling process transparent and educational.
+            </p>
+          </li>
+        </ul>
+      </SideImage>
 
       <FadeInSection delay={0.1}>
         <div className="mt-10 grid gap-8 lg:grid-cols-2">

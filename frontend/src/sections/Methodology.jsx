@@ -1,6 +1,7 @@
 import { BlockMath, InlineMath } from 'react-katex'
 import { FadeInSection } from '../components/FadeInSection'
 import { HoverCard } from '../components/HoverCard'
+import { SideImage } from '../components/SideImage'
 
 const CARDS = [
   {
@@ -21,18 +22,56 @@ const CARDS = [
 export function Methodology() {
   return (
     <section id="methodology" className="mx-auto max-w-5xl px-6 py-24">
-      <FadeInSection>
+      <SideImage
+        src="/images/methodology_section_image.jpg"
+        alt="Storm damage with insured loss methodology"
+        side="right"
+      >
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Methodology</h2>
         <p className="mt-3 max-w-3xl text-slate-600 dark:text-slate-300">
-          A frequency-severity approach: model how often storms occur, model how large the
-          resulting insured losses are, then combine the two into a pure premium.
+          A <strong className="font-semibold text-slate-900 dark:text-white">frequency-severity
+          approach</strong> is applied to quantify catastrophic storm losses for insurance pricing.
         </p>
-        <img
-          src="/images/methodology_section_image.jpg"
-          alt=""
-          className="mt-8 h-56 w-full rounded-2xl object-cover sm:h-72"
-        />
-      </FadeInSection>
+        <ul className="mt-6 space-y-4">
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Frequency modelling:</strong>{' '}
+              estimate how often storms occur in a given year using count distributions such as{' '}
+              <strong className="font-medium">Poisson</strong> and{' '}
+              <strong className="font-medium">Negative Binomial</strong>. This captures the
+              stochastic nature of event occurrence.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Severity modelling:</strong>{' '}
+              measure the size of insured losses per storm using{' '}
+              <strong className="font-medium">Extreme Value Theory (EVT)</strong>, particularly the{' '}
+              <strong className="font-medium">Generalized Pareto Distribution (GPD)</strong>, to
+              account for heavy-tailed loss behavior.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Integration:</strong>{' '}
+              combine frequency and severity results to calculate the{' '}
+              <strong className="font-medium">pure premium</strong>, representing the expected
+              annual loss cost.
+            </p>
+          </li>
+          <li className="flex gap-3">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500" />
+            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              <strong className="font-semibold text-slate-900 dark:text-white">Data foundation:</strong>{' '}
+              all modelling is grounded in the <strong className="font-medium">EM-DAT</strong>{' '}
+              dataset, which provides historical records of storm events and associated losses.
+            </p>
+          </li>
+        </ul>
+      </SideImage>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2">
         {CARDS.map((card, i) => (
