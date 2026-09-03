@@ -25,17 +25,17 @@ def health():
     return {"status": "ok"}
 
 
-@app.get("/frequency/fit")
+@app.get("/frequency")
 def frequency_fit(model: FrequencyModel = "negbin"):
     return _fit_frequency(model, load_annual_counts())
 
 
-@app.get("/severity/fit")
+@app.get("/severity")
 def severity_fit(threshold: float = Query(DEFAULT_THRESHOLD, ge=MIN_THRESHOLD, le=MAX_THRESHOLD)):
     return fit_gpd(load_severity(), threshold)
 
 
-@app.get("/pricing/pure-premium")
+@app.get("/pricing")
 def pricing_pure_premium(
     threshold: float = Query(DEFAULT_THRESHOLD, ge=MIN_THRESHOLD, le=MAX_THRESHOLD),
     model: FrequencyModel = "negbin",
