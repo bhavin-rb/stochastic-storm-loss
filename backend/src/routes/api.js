@@ -15,7 +15,7 @@ const modelFitLimiter = rateLimit({
 
 router.get('/frequency', modelFitLimiter, validateQuery(frequencyQuerySchema), async (req, res, next) => {
   try {
-    res.json(await callModelService('/frequency/fit', req.validatedQuery));
+    res.json(await callModelService('/frequency', req.validatedQuery));
   } catch (err) {
     next(err);
   }
@@ -23,7 +23,7 @@ router.get('/frequency', modelFitLimiter, validateQuery(frequencyQuerySchema), a
 
 router.get('/severity', modelFitLimiter, validateQuery(severityQuerySchema), async (req, res, next) => {
   try {
-    res.json(await callModelService('/severity/fit', req.validatedQuery));
+    res.json(await callModelService('/severity', req.validatedQuery));
   } catch (err) {
     next(err);
   }
@@ -31,7 +31,7 @@ router.get('/severity', modelFitLimiter, validateQuery(severityQuerySchema), asy
 
 router.get('/pricing', modelFitLimiter, validateQuery(pricingQuerySchema), async (req, res, next) => {
   try {
-    res.json(await callModelService('/pricing/pure-premium', req.validatedQuery));
+    res.json(await callModelService('/pricing', req.validatedQuery));
   } catch (err) {
     next(err);
   }
