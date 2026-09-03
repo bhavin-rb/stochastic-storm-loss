@@ -1,9 +1,16 @@
-fastapi
-uvicorn[standard]
-pandas
-openpyxl
-scipy
-statsmodels
-pydantic
-pytest
-httpx
+# Python (FastAPI) model-service dependencies for the Storm Loss web app.
+# Install: python -m pip install -r requirements.txt   (Python 3.11)
+# Production server: uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# --- Runtime ---
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.5
+pandas==3.0.5
+numpy==2.4.6
+scipy==1.17.1
+openpyxl==3.1.5
+
+# --- Test ---
+pytest==9.1.1
+httpx==0.28.1
