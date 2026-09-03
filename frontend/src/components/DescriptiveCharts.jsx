@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { HoverCard } from './HoverCard'
 import { LazyPlotlyChart } from './LazyPlotlyChart'
+import { ErrorState, LoadingState } from './AsyncState'
 import { useDataSummary } from '../api/hooks'
 
 /** Descriptive charts from /api/data/summary, reproducing thesis Figures 1, 2 and 4. */
@@ -70,10 +71,27 @@ export function DescriptiveCharts({ theme, threshold }) {
   )
 
   if (summary.isLoading) {
-    return <p className="text-sm text-slate-500 dark:text-slate-400">Loading dataset overview…</p>
+    return (
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/60">
+        <p className="text-sm font-semibold">Dataset overview</p>
+        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+          Server is warming up — first load can take up to a minute. Please wait.
+        </p>
+        <div className="mt-4 h-8">
+          <LoadingState label="Loading dataset overview…" />
+        </div>
+      </div>
+    )
   }
   if (summary.isError) {
-    return <p className="text-sm text-red-600 dark:text-red-400">{summary.error.message}</p>
+    return (
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/60">
+        <p className="text-sm font-semibold">Dataset overview</p>
+        <div className="mt-4 h-24">
+          <ErrorState message={summary.error.message} onRetry={() => summary.refetch()} />
+        </div>
+      </div>
+    )
   }
   if (!summary.data) return null
 

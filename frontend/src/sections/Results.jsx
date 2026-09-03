@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { ErrorState, LoadingState } from '../components/AsyncState'
 import { FadeInSection } from '../components/FadeInSection'
 import { HoverCard } from '../components/HoverCard'
 import { LazyPlotlyChart } from '../components/LazyPlotlyChart'
@@ -125,10 +126,14 @@ export function Results({ theme }) {
             </div>
 
             {pricing.isLoading && (
-              <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">Computing…</p>
+              <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+                Server is warming up — first load can take up to a minute.
+              </p>
             )}
             {pricing.isError && (
-              <p className="mt-6 text-sm text-red-600 dark:text-red-400">{pricing.error.message}</p>
+              <div className="mt-6 h-24">
+                <ErrorState message={pricing.error.message} onRetry={() => pricing.refetch()} />
+              </div>
             )}
             {pricing.data && pricing.data.is_infinite && (
               <div className="mt-6 rounded-xl border border-amber-300 bg-amber-50 p-4 dark:border-amber-700 dark:bg-amber-950/40">
@@ -216,10 +221,9 @@ export function Results({ theme }) {
               Good fit in low/mid quantiles; drifts at the extreme tail, as expected.
             </p>
             <div className="mt-4 h-72">
-              {severity.isLoading && (
-                <div className="flex h-full items-center justify-center text-sm text-slate-500 dark:text-slate-400">
-                  Loading…
-                </div>
+              {severity.isLoading && <LoadingState label="Loading Q-Q plot…" />}
+              {severity.isError && (
+                <ErrorState message={severity.error.message} onRetry={() => severity.refetch()} />
               )}
               {qqData && (
                 <LazyPlotlyChart

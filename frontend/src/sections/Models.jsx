@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { DescriptiveCharts } from '../components/DescriptiveCharts'
+import { ErrorState, LoadingState } from '../components/AsyncState'
 import { FadeInSection } from '../components/FadeInSection'
 import { HoverCard } from '../components/HoverCard'
 import { LazyPlotlyChart } from '../components/LazyPlotlyChart'
@@ -142,7 +143,7 @@ export function Models({ theme }) {
 
             <div className="mt-4 h-72">
               {frequency.isLoading && <ChartPlaceholder label="Loading frequency fit…" />}
-              {frequency.isError && <ChartError message={frequency.error.message} />}
+              {frequency.isError && <ChartError message={frequency.error.message} onRetry={() => frequency.refetch()} />}
               {frequency.data && (
                 <LazyPlotlyChart
                   theme={theme}
@@ -194,7 +195,7 @@ export function Models({ theme }) {
 
             <div className="mt-4 h-64">
               {severity.isLoading && <ChartPlaceholder label="Loading severity fit…" />}
-              {severity.isError && <ChartError message={severity.error.message} />}
+              {severity.isError && <ChartError message={severity.error.message} onRetry={() => severity.refetch()} />}
               {severity.data && (
                 <LazyPlotlyChart
                   theme={theme}
@@ -254,17 +255,9 @@ function Stat({ label, value }) {
 }
 
 function ChartPlaceholder({ label }) {
-  return (
-    <div className="flex h-full items-center justify-center text-sm text-slate-500 dark:text-slate-400">
-      {label}
-    </div>
-  )
+  return <LoadingState label={label} />
 }
 
-function ChartError({ message }) {
-  return (
-    <div className="flex h-full items-center justify-center text-center text-sm text-red-600 dark:text-red-400">
-      {message}
-    </div>
-  )
+function ChartError({ message, onRetry }) {
+  return <ErrorState message={message} onRetry={onRetry} />
 }
