@@ -10,7 +10,7 @@ def compute_pure_premium(expected_frequency: float, severity_result: dict) -> di
             "is_infinite": True,
             "reason": (
                 "Expected severity is infinite because the GPD shape parameter "
-                "(xi) is >= 1, indicating a heavy-tailed distribution (thesis Section 3.2.5)."
+                "(xi) is >= 1, indicating a heavy-tailed distribution."
             ),
             "expected_frequency": expected_frequency,
             "expected_severity": None,

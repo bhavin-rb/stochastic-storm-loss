@@ -93,7 +93,7 @@ export function Results({ theme }) {
             <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               <strong className="font-semibold text-slate-900 dark:text-white">Data grounding:</strong>{' '}
               all results are derived directly from the <strong className="font-medium">EM-DAT</strong>{' '}
-              dataset, ensuring reproducibility and alignment with the thesis methodology.
+              dataset, ensuring reproducibility and alignment with the methodology.
             </p>
           </li>
         </ul>
@@ -167,7 +167,7 @@ export function Results({ theme }) {
                         <p className="text-sm leading-relaxed">
                           <strong className="font-semibold">Implication:</strong> Because the mean loss is
                           undefined, the <strong className="font-medium">pure premium cannot be computed in
-                          finite terms</strong>. This was a major conclusion of the thesis: traditional
+                          finite terms</strong>. This was a major conclusion of the project: traditional
                           actuarial models break down under heavy-tailed catastrophe risk.
                         </p>
                       </li>
