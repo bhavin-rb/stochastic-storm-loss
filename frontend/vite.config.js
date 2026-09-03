@@ -10,4 +10,13 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.js'],
     globals: true,
   },
+  server: {
+    host: true,
+  },
+  preview: {
+    allowedHosts: [
+      "stochastic-storm-loss-frontend.onrender.com",
+      "localhost"
+    ]
+  }
 })
